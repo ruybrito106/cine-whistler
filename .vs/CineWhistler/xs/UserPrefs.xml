@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{6A9EF0DE-4357-D79F-CDF5-84FE64849CE3}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Whistler.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Whistler.cs" Line="44" Column="60" />
+      <File FileName="Assets/Scripts/Guard.cs" Line="58" Column="45" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
