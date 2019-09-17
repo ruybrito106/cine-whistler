@@ -15,7 +15,6 @@ public class Whistler : MonoBehaviour
     private Vector2 fingerDown;
     private Vector2 fingerUp;
 
-    // Start is called before the first frame update
     void Start()
     {
         dest = transform.position;
@@ -26,7 +25,6 @@ public class Whistler : MonoBehaviour
         }
     }
 
-    // FixedUpdate is called once per frame
     void FixedUpdate()
     {
         Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
@@ -62,7 +60,6 @@ public class Whistler : MonoBehaviour
             }
         }
 
-        //Detect swipe
         foreach (Touch touch in Input.touches)
         {
             if (touch.phase == TouchPhase.Began)
@@ -75,12 +72,6 @@ public class Whistler : MonoBehaviour
                 fingerDown = touch.position;
                 CheckSwipe();
             }
-
-            //if (touch.phase == TouchPhase.Ended)
-            //{
-            //    fingerDown = touch.position;
-            //    CheckSwipe();
-            //}
         }
     }
 
