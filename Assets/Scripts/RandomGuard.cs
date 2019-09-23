@@ -40,27 +40,6 @@ public class RandomGuard : MonoBehaviour
         return 4;
     }
 
-    //private float DistanceToRef(Vector3 refs, Transform x)
-    //{
-    //    return Mathf.Sqrt(Mathf.Pow(Mathf.Abs(refs.x - x.position.x), 2f) + Mathf.Pow(Mathf.Abs(refs.y - x.position.y), 2f));
-    //}
-
-    //private void SortPath(Vector3 refs)
-    //{
-    //    for (int i = 0; i < path.Length; i++)
-    //    {
-    //        for (int j = i + 1; j < path.Length; j++)
-    //        {
-    //            if (DistanceToRef(refs, path[j]) < DistanceToRef(refs, path[i]))
-    //            {
-    //                Transform tmp = path[i];
-    //                path[i] = path[j];
-    //                path[j] = tmp;
-    //            }
-    //        }
-    //    }
-    //}
-
     private int DecideNext(Vector3 position)
     {
         for (int i = 0; i < path.Length; i++)

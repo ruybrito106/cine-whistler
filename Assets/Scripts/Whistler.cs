@@ -48,8 +48,6 @@ public class Whistler : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Space))
         {
-            particle = GetComponentInChildren<ParticleSystem>();
-
             if (particle.isPlaying)
             {
                 particle.Stop();
@@ -125,23 +123,27 @@ public class Whistler : MonoBehaviour
     {
         dest = (Vector2)transform.position + step * Vector2.up;
         transform.eulerAngles = new Vector3(0, 0, 0);
+        particle.Stop();
     }
 
     void OnMoveDown()
     {
         dest = (Vector2)transform.position - step * Vector2.up;
         transform.eulerAngles = new Vector3(0, 0, 180);
+        particle.Stop();
     }
 
     void OnMoveLeft()
     {
         dest = (Vector2)transform.position + step * Vector2.left;
         transform.eulerAngles = new Vector3(0, 0, 90);
+        particle.Stop();
     }
 
     void OnMoveRight()
     {
         dest = (Vector2)transform.position + step * Vector2.right;
         transform.eulerAngles = new Vector3(0, 0, 270);
+        particle.Stop();
     }
 }
