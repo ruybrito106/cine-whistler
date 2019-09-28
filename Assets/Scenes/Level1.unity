@@ -24068,7 +24068,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad751997b297474a8bf34b3bd89b7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sitRatio: 0.5
+  sitRatio: 0.3
+  secondsToLoseLife: 0.5
+  secondsToBotherWatcher: 1
+  remainingWatchers: 0
+  levelID: 1
 --- !u!4 &1138529358
 Transform:
   m_ObjectHideFlags: 0
@@ -42257,7 +42261,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2092017998
