@@ -68,8 +68,9 @@ public class LevelController : MonoBehaviour
         remainingWatchers = (int)((float)chairs.Count * sitRatio) - curIndex;
         if (remainingWatchers == 0)
         {
-            Debug.Log("Win");
-            Application.LoadLevel(levelID + 1);
+            Modal.MessageBox("Yes!", "Your noise is remarkable!", () => {
+                Application.LoadLevel(levelID + 1);
+              });
         }
     }
 
