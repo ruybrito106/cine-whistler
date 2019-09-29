@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System;
 
-// example:
-// Modal.MessageBox("error", "Sorry but you're S.O.L", () => { Application.Quit() });
-
 public class Modal : MonoBehaviour
 {
     Rect m_windowRect;
@@ -46,8 +43,8 @@ public class Modal : MonoBehaviour
     void WindowFunc(int windowID)
     {
         const int border = 10;
-        const int width = 50;
-        const int height = 25;
+        const int width = 80;
+        const int height = 35;
         const int spacing = 10;
 
         Rect l = new Rect(

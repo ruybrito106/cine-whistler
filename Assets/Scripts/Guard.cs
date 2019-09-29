@@ -15,7 +15,8 @@ public class Guard : MonoBehaviour
     private List<List<int>> pathIds = new List<List<int>> { 
         new List<int> { 45, 30, 32, 58, 61, 71, 70, 80, 79, 86, 85, 77, 78, 68, 67, 57, 53, 42, 41, 25, 26, 16, 17, 2, 3, 10, 9, 18, 19, 29, 30 },
         new List<int> { 45, 30, 33, 5, 6, 24, 23, 34, 35, 49, 48, 60, 55, 28, 27, 83, 82, 72, 74, 27, 30 },
-        new List<int> { 45, 30, 32, 58, 59, 5, 4, 11, 14, 24, 22, 69, 68, 78, 77, 85, 82, 72, 74, 2, 1, 15, 17, 27, 30 }
+        new List<int> { 45, 30, 32, 58, 59, 5, 4, 11, 14, 24, 22, 69, 68, 78, 77, 85, 82, 72, 74, 2, 1, 15, 17, 27, 30 },
+        new List<int> { 45, 30, 31, 20, 21, 12, 11, 4, 6, 14, 7, 15, 17, 54, 55, 50, 51, 50, 28, 32, 78, 77, 85, 82, 72, 74, 27, 30 }   
     };
 
     private bool WithinMargin(float a, float b)
@@ -99,6 +100,9 @@ public class Guard : MonoBehaviour
         if (collision.name == "Whistler")
         {
             Destroy(collision.gameObject);
+            Modal.MessageBox("Oh no!", "You have been catch!", () => {
+                Application.LoadLevel(0);
+            });
         }
     }
 }
