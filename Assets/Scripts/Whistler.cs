@@ -7,13 +7,14 @@ public class Whistler : MonoBehaviour
 
     public float speed = 0.4f;
     public float step = 0.2f;
-    public float swipe_sensibility = 20f;
-
     private Vector2 dest = Vector2.zero;
     private ParticleSystem particle;
+    private bool touchStart = false;
+    private Vector2 point;
+    public Transform touch;
+    public Transform circle;
 
-    private Vector2 fingerDown;
-    private Vector2 fingerUp;
+    public Transform whistle;
 
     void Start()
     {
@@ -25,52 +26,45 @@ public class Whistler : MonoBehaviour
         }
     }
 
+    void Update () {
+        if (Input.GetMouseButton(0)) {
+            touchStart = true;
+            point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
+        } else {
+            touchStart = false;
+        }
+	}
+
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            OnMoveUp();
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            OnMoveRight();
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            OnMoveDown();
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            OnMoveLeft();
-        }
-        else if (Input.GetKey(KeyCode.Space))
-        {
-            if (particle.isPlaying)
-            {
-                particle.Stop();
-            }
-            else
-            {
-                particle.Play();
-            }
-        }
-
-        foreach (Touch touch in Input.touches)
-        {
-            if (touch.phase == TouchPhase.Began)
-            {
-                fingerUp = touch.position;
-                fingerDown = touch.position;
-            }
-            if (touch.phase == TouchPhase.Moved)
-            {
-                fingerDown = touch.position;
-                CheckSwipe();
-            }
-        }
-
         Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
         GetComponent<Rigidbody2D>().MovePosition(p);
+
+        if (touchStart) {
+            Vector2 offsetToWhistle = point - ((Vector2) whistle.position);
+            if (offsetToWhistle.magnitude <= 1.0f) {
+                if (!particle.isPlaying) particle.Play();
+                return;
+            }
+            Vector2 offsetToJoystick = point - ((Vector2) circle.position);
+            if (offsetToJoystick.magnitude <= 3.0f) {
+                Vector2 direction = Vector2.ClampMagnitude(offsetToJoystick, 1.0f);
+                touch.GetComponent<SpriteRenderer>().enabled = true;
+                touch.transform.position = new Vector2(circle.position.x + direction.x, circle.position.y + direction.y);
+                if (offsetToJoystick.x <= -0.5) {
+                    OnMoveLeft();
+                } else if (offsetToJoystick.x >= 0.5) {
+                    OnMoveRight();
+                } else if (offsetToJoystick.y <= -0.5) {
+                    OnMoveDown();
+                } else if (offsetToJoystick.y >= 0.5) {
+                    OnMoveUp();
+                }
+            }
+        } else {
+            touch.GetComponent<SpriteRenderer>().enabled = false;
+            particle.Stop();
+        }
     }
 
     bool valid(Vector2 dir)
@@ -78,45 +72,6 @@ public class Whistler : MonoBehaviour
         Vector2 pos = transform.position;
         RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
         return (hit.collider == GetComponent<Collider2D>());
-    }
-
-    void CheckSwipe()
-    {
-        if (VerticalMove() > swipe_sensibility && VerticalMove() > HorizontalValMove())
-        {
-            if (fingerDown.y - fingerUp.y > 0)
-            {
-                OnMoveUp();
-            }
-            else if (fingerDown.y - fingerUp.y < 0)
-            {
-                OnMoveDown();
-            }
-            fingerUp = fingerDown;
-        }
-
-        else if (HorizontalValMove() > swipe_sensibility && HorizontalValMove() > VerticalMove())
-        {
-            if (fingerDown.x - fingerUp.x > 0)
-            {
-                OnMoveRight();
-            }
-            else if (fingerDown.x - fingerUp.x < 0)
-            {
-                OnMoveLeft();
-            }
-            fingerUp = fingerDown;
-        }
-    }
-
-    float VerticalMove()
-    {
-        return Mathf.Abs(fingerDown.y - fingerUp.y);
-    }
-
-    float HorizontalValMove()
-    {
-        return Mathf.Abs(fingerDown.x - fingerUp.x);
     }
 
     void OnMoveUp()
