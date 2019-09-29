@@ -27,9 +27,6 @@ public class Whistler : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
-        GetComponent<Rigidbody2D>().MovePosition(p);
-
         if (Input.GetKey(KeyCode.UpArrow))
         {
             OnMoveUp();
@@ -71,6 +68,9 @@ public class Whistler : MonoBehaviour
                 CheckSwipe();
             }
         }
+
+        Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
+        GetComponent<Rigidbody2D>().MovePosition(p);
     }
 
     bool valid(Vector2 dir)
