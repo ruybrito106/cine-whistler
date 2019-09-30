@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class Modal : MonoBehaviour
@@ -60,10 +61,10 @@ public class Modal : MonoBehaviour
             width,
             height);
 
-        if (GUI.Button(b, "NEXT"))
+        if (GUI.Button(b, "TRY AGAIN"))
         {
-            Destroy(this.gameObject);
-            m_next();
+            //Destroy(this.gameObject);
+            Application.LoadLevel(SceneManager.GetActiveScene().buildIndex);
         }
 
         Rect bb = new Rect(
