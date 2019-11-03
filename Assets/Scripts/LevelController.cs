@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using GameAnalyticsSDK;
 
 public class LevelController : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class LevelController : MonoBehaviour
     public float secondsToBotherWatcher = 1f;
     public int remainingWatchers;
     public int levelID = 1;
+
+    void Awake() 
+    {
+        GameAnalytics.Initialize();
+    }
 
     void SetupAnimators()
     {
