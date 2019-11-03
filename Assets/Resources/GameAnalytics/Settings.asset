@@ -30,7 +30,7 @@ MonoBehaviour:
   secretKey:
   - fb34c185662e588837d46008563d0a767dea1525
   Build:
-  - 0.1
+  - 1.1.0
   SelectedPlatformStudio:
   - 
   SelectedPlatformGame:
@@ -50,6 +50,7 @@ MonoBehaviour:
   VerboseLogBuild: 0
   UseManualSessionHandling: 0
   SendExampleGameDataToMyGame: 0
+  UseIMEI: 0
   InternetConnectivity: 0
   CustomDimensions01: []
   CustomDimensions02: []
